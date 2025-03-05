@@ -1,10 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script>
+        function mostrarSeccion(seccion) {
+            document.querySelectorAll(".contenido").forEach(div => div.style.display = "none");
+            document.getElementById(seccion).style.display = "block";
+        }
+    </script>
 </head>
 <body>
-$END$
+<nav>
+    <ul>
+        <li><a href="#" onclick="mostrarSeccion('infoAcademica')">Información Académica</a></li>
+        <li><a href="#" onclick="mostrarSeccion('asignaturasInscritas')">Asignaturas Inscritas</a></li>
+        <li><a href="#" onclick="mostrarSeccion('asignaturasDisponibles')">Asignaturas Disponibles</a></li>
+        <li><a href="#" onclick="mostrarSeccion('profesores')">Profesores</a></li>
+    </ul>
+</nav>
+<div>
+    <H2>Bienvenido, <strong th:text=""></strong></H2>
+</div>
+
+<!-- Sección: Información Académica -->
+<div id="infoAcademica" class="contenido" style="display: none;">
+    <h2>Información Académica</h2>
+    <ul>
+        <li>PA: <span th:text="${historial.pa}"></span></li>
+        <li>PAPA: <span th:text="${historial.papa}"></span></li>
+        <li>Créditos Restantes: <span th:text="${historial.creditos_restantes}"></span></li>
+        <li>Créditos Vistos: <span th:text="${historial.creditos_vistos}"></span></li>
+        <li>Créditos Perdidos: <span th:text="${historial.creditos_perdidos}"></span></li>
+    </ul>
+
+    <h3>Historial de Asignaturas</h3>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Nota</th>
+            <th>Periodo</th>
+        </tr>
+        <tr th:each="asignatura : ${asignaturas}">
+            <td th:text="${asignatura.nombre}"></td>
+            <td th:text="${asignatura.nota}"></td>
+            <td th:text="${asignatura.periodo}"></td>
+        </tr>
+    </table>
+</div>
+
+<!-- Otras secciones (vacías por ahora) -->
+<div id="asignaturasInscritas" class="contenido" style="display: none;">
+    <h2>Asignaturas Inscritas</h2>
+    <p>Contenido pendiente...</p>
+</div>
+
+<div id="asignaturasDisponibles" class="contenido" style="display: none;">
+    <h2>Asignaturas Disponibles</h2>
+    <p>Contenido pendiente...</p>
+</div>
+
+<div id="profesores" class="contenido" style="display: none;">
+    <h2>Profesores</h2>
+    <p>Contenido pendiente...</p>
+</div>
 </body>
 </html>
+

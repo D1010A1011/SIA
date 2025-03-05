@@ -1,7 +1,8 @@
-package com.unal.sia.models;
+package com.unal.sia.security;
 
 import com.unal.sia.models.Usuario;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -16,7 +17,7 @@ public class UsuarioDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> "ROLE_" + usuario.getRol()); // "ROLE_EST", "ROLE_PROF", "ROLE_PROF-EST"
+        return List.of(new SimpleGrantedAuthority("ROLE_" + usuario.getRol())); // "ROLE_EST", "ROLE_PROF", etc.
     }
 
     @Override
@@ -47,5 +48,9 @@ public class UsuarioDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getNombreUsuario() {
+        return usuario.getNombre_usuario();
     }
 }

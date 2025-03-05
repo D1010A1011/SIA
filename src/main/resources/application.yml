@@ -1,1 +1,18 @@
-spring.application.name=SIA
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sia
+    username: postgres
+    password: Juan3144#
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  security:
+    user:
+      name: admin
+      password: admin
+
+  thymeleaf:
+    prefix: file:src/main/resources/templates/

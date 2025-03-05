@@ -1,10 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
 </head>
 <body>
-$END$
+<h2>Registro de Usuario</h2>
+
+<form action="/auth/register" method="post">
+    <label>Primer Nombre:</label>
+    <input type="text" name="primer_nombre" required>
+
+    <label>Segundo Nombre:</label>
+    <input type="text" name="segundo_nombre">
+
+    <label>Primer Apellido:</label>
+    <input type="text" name="primer_apellido" required>
+
+    <label>Segundo Apellido:</label>
+    <input type="text" name="segundo_apellido">
+
+    <label>Tipo de Identificación:</label>
+    <select name="tipo_identificacion" required>
+        <option value="CC">Cédula de Ciudadanía</option>
+        <option value="TI">Tarjeta de Identidad</option>
+        <option value="TE">Cédula de Extranjería</option>
+        <option value="PA">Pasaporte</option>
+        <option value="PPT">Permiso de Protección temporal</option>
+        <option value="PEP">Permiso Especial de Permanencia</option>
+    </select>
+
+    <label>Número de Identificación:</label>
+    <input type="text" name="num_identificacion" required>
+
+    <label>Teléfono:</label>
+    <input type="text" name="telefono">
+
+    <label>Contraseña:</label>
+    <input type="password" name="contrasena" required>
+
+    <label>Programa:</label>
+    <select name="programa" required>
+        <option value="">Selecciona un programa</option>
+        <th:block th:each="entry : ${programas}">
+            <option th:value="${entry.key}" th:text="${entry.value}"></option>
+        </th:block>
+    </select>
+
+    <button type="submit">Registrar</button>
+</form>
+
+<p><a href="/auth/login">Iniciar Sesión</a></p>
 </body>
 </html>
